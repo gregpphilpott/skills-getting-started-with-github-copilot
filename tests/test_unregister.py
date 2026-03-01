@@ -1,3 +1,6 @@
+from urllib.parse import quote
+
+
 def test_unregister_removes_existing_participant(client):
     # Arrange
     activity_name = "Chess Club"
@@ -40,7 +43,7 @@ def test_unregister_rejects_unknown_activity(client):
 
     # Act
     response = client.delete(
-        f"/activities/{unknown_activity}/participants",
+        f"/activities/{quote(unknown_activity)}/participants",
         params={"email": email},
     )
 
